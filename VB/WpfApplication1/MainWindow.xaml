@@ -1,0 +1,149 @@
+﻿<Window x:Class="WpfApplication1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduler"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <ResourceDictionary>
+            <dxsch:SchedulerUICommand x:Key="commands" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <dxb:BarManager Name="barManager1" ToolbarGlyphSize="Small">
+            <dxb:BarManager.Bars>
+                <dxb:Bar Caption="View Navigator" Name="barViewNavigator">
+                    <dxb:Bar.DockInfo>
+                        <dxb:BarDockInfo ContainerType="Top" />
+                    </dxb:Bar.DockInfo>
+                    <dxb:Bar.ItemLinks>
+                        <dxb:BarButtonItemLink BarItemName="biNavigateViewBackward" />
+                        <dxb:BarButtonItemLink BarItemName="biNavigateViewForward" />
+                        <dxb:BarButtonItemLink BarItemName="biGotoToday" />
+                        <dxb:BarButtonItemLink BarItemName="biViewZoomIn" />
+                        <dxb:BarButtonItemLink BarItemName="biViewZoomOut" />
+                    </dxb:Bar.ItemLinks>
+                </dxb:Bar>
+                <dxb:Bar Caption="View Selector" Name="barViewSelector">
+                    <dxb:Bar.DockInfo>
+                        <dxb:BarDockInfo ContainerType="Top" />
+                    </dxb:Bar.DockInfo>
+                    <dxb:Bar.ItemLinks>
+                        <dxb:BarCheckItemLink BarItemName="biSwitchToDayView" />
+                        <dxb:BarCheckItemLink BarItemName="biSwitchToWorkWeekView" />
+                        <dxb:BarCheckItemLink BarItemName="biSwitchToWeekView" />
+                        <dxb:BarCheckItemLink BarItemName="biSwitchToMonthView" />
+                        <dxb:BarCheckItemLink BarItemName="biSwitchToTimelineView" />
+                    </dxb:Bar.ItemLinks>
+                </dxb:Bar>
+                <dxb:Bar Caption="Group By" Name="barGroupBy">
+                    <dxb:Bar.DockInfo>
+                        <dxb:BarDockInfo ContainerType="Top" />
+                    </dxb:Bar.DockInfo>
+                    <dxb:Bar.ItemLinks>
+                        <dxb:BarCheckItemLink BarItemName="biSwitchToGroupByNone" />
+                        <dxb:BarCheckItemLink BarItemName="biSwitchToGroupByDate" />
+                        <dxb:BarCheckItemLink BarItemName="biSwitchToGroupByResource" />
+                    </dxb:Bar.ItemLinks>
+                </dxb:Bar>
+            </dxb:BarManager.Bars>
+            <dxb:BarManager.Items>
+                <dxb:BarButtonItem 
+        Command="{Binding Path=NavigateViewBackward, Mode=OneTime, Source={StaticResource commands}}"
+        CommandParameter="{Binding ElementName=schedulerControl1}" 
+        Name="biNavigateViewBackward" />
+                <dxb:BarButtonItem 
+        Command="{Binding Path=NavigateViewForward, Mode=OneTime, Source={StaticResource commands}}"
+        CommandParameter="{Binding ElementName=schedulerControl1}"
+        Name="biNavigateViewForward" />
+                <dxb:BarButtonItem
+        Command="{Binding Path=GotoToday, Mode=OneTime, Source={StaticResource commands}}"
+        CommandParameter="{Binding ElementName=schedulerControl1}" 
+        Name="biGotoToday" />
+                <dxb:BarButtonItem
+        Command="{Binding Path=ViewZoomIn, Mode=OneTime, Source={StaticResource commands}}"
+        CommandParameter="{Binding ElementName=schedulerControl1}" 
+        Name="biViewZoomIn" />
+                <dxb:BarButtonItem 
+        Command="{Binding Path=ViewZoomOut, Mode=OneTime, Source={StaticResource commands}}"
+        CommandParameter="{Binding ElementName=schedulerControl1}" 
+        Name="biViewZoomOut" />
+                <dxb:BarCheckItem 
+        Command="{Binding Path=SwitchToDayView, Mode=OneTime, Source={StaticResource commands}}"
+        CommandParameter="{Binding ElementName=schedulerControl1}" 
+        Name="biSwitchToDayView" />
+                <dxb:BarCheckItem
+        Command="{Binding Path=SwitchToWorkWeekView, Mode=OneTime, Source={StaticResource commands}}"
+        CommandParameter="{Binding ElementName=schedulerControl1}" 
+        Name="biSwitchToWorkWeekView" />
+                <dxb:BarCheckItem
+        Command="{Binding Path=SwitchToWeekView, Mode=OneTime, Source={StaticResource commands}}"
+        CommandParameter="{Binding ElementName=schedulerControl1}" 
+        Name="biSwitchToWeekView" />
+                <dxb:BarCheckItem 
+        Command="{Binding Path=SwitchToMonthView, Mode=OneTime, Source={StaticResource commands}}"
+        CommandParameter="{Binding ElementName=schedulerControl1}" 
+        Name="biSwitchToMonthView" />
+                <dxb:BarCheckItem 
+        Command="{Binding Path=SwitchToTimelineView, Mode=OneTime, Source={StaticResource commands}}"
+        CommandParameter="{Binding ElementName=schedulerControl1}" 
+        Name="biSwitchToTimelineView" />
+                <dxb:BarCheckItem 
+        Command="{Binding Path=SwitchToGroupByNone, Mode=OneTime, Source={StaticResource commands}}"
+        CommandParameter="{Binding ElementName=schedulerControl1}" 
+        Name="biSwitchToGroupByNone" />
+                <dxb:BarCheckItem
+        Command="{Binding Path=SwitchToGroupByDate, Mode=OneTime, Source={StaticResource commands}}"
+        CommandParameter="{Binding ElementName=schedulerControl1}"
+        Name="biSwitchToGroupByDate" />
+                <dxb:BarCheckItem 
+        Command="{Binding Path=SwitchToGroupByResource, Mode=OneTime, Source={StaticResource commands}}"
+        CommandParameter="{Binding ElementName=schedulerControl1}" 
+        Name="biSwitchToGroupByResource" />
+            </dxb:BarManager.Items>
+            <dxsch:SchedulerControl Name="schedulerControl1" 
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                        ActiveViewType="Week" 
+                        GroupType="Resource"
+                        BarManager="{Binding ElementName=barManager1, Mode=OneTime}">
+                <dxsch:SchedulerControl.Storage>
+                    <dxsch:SchedulerStorage>
+                        <dxsch:SchedulerStorage.AppointmentStorage>
+                            <dxsch:AppointmentStorage>
+                                <dxsch:AppointmentStorage.Mappings>
+                                    <dxsch:AppointmentMapping 
+                                    Start="StartTime" 
+                                    End="EndTime" 
+                                    AllDay="AllDay" 
+                                    Description="Description" 
+                                    Label="Label" 
+                                    Location="Location" 
+                                    Subject="Subject"
+                                    RecurrenceInfo="RecurrenceInfo"
+                                    ReminderInfo="ReminderInfo"
+                                    ResourceId="CarId" 
+                                    Status="Status" 
+                                    Type="EventType" />
+                                </dxsch:AppointmentStorage.Mappings>
+                            </dxsch:AppointmentStorage>
+                        </dxsch:SchedulerStorage.AppointmentStorage>
+
+                        <dxsch:SchedulerStorage.ResourceStorage>
+                            <dxsch:ResourceStorage>
+                                <dxsch:ResourceStorage.Mappings>
+                                    <dxsch:ResourceMapping 
+                                    Caption="Model" 
+                                    Id="ID" 
+                                    Image="Picture" />
+                                </dxsch:ResourceStorage.Mappings>
+                            </dxsch:ResourceStorage>
+                        </dxsch:SchedulerStorage.ResourceStorage>
+                    </dxsch:SchedulerStorage>
+                </dxsch:SchedulerControl.Storage>
+                <dxsch:SchedulerControl.WeekView>
+                    <dxsch:WeekView ResourcesPerPage="3"></dxsch:WeekView>
+                </dxsch:SchedulerControl.WeekView>
+            </dxsch:SchedulerControl>
+        </dxb:BarManager>
+    </Grid>
+</Window>
